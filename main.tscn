@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=3 uid="uid://d14d4jwvj3tcg"]
+[gd_scene load_steps=110 format=3 uid="uid://d14d4jwvj3tcg"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_6gt16"]
 [ext_resource type="Texture2D" uid="uid://vpwd4qp1u2sv" path="res://Sword_1_Template_Idle_Down-Sheet.png" id="1_bbiek"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://voroqlf1b0hu" path="res://Sword_2_Template_Run_Left-Sheet.png" id="6_7mwkm"]
 [ext_resource type="Texture2D" uid="uid://dneh6veuxbq5l" path="res://Sword_2_Template_Run_Right-Sheet.png" id="7_0r8g5"]
 [ext_resource type="Texture2D" uid="uid://c4gqp2xuoq2jh" path="res://Sword_2_Template_Run_Up-Sheet.png" id="8_i8yro"]
+[ext_resource type="Script" path="res://pot.gd" id="15_bhfki"]
 [ext_resource type="Texture2D" uid="uid://ccb3qydegcm2h" path="res://breakable pots (gray).png" id="15_qi0pb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b634q"]
@@ -642,12 +643,50 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pi7n0"]
 size = Vector2(12, 4)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nfm44"]
+size = Vector2(58, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_arl28"]
+size = Vector2(29, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yey48"]
+size = Vector2(29, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g12yh"]
+size = Vector2(58, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxf8f"]
+atlas = ExtResource("15_qi0pb")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkuc0"]
+atlas = ExtResource("15_qi0pb")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dnka"]
+atlas = ExtResource("15_qi0pb")
+region = Rect2(96, 64, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_8kv84"]
 atlas = ExtResource("15_qi0pb")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bdl4d"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxf8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkuc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dnka")
+}],
+"loop": false,
+"name": &"break",
+"speed": 6.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8kv84")
@@ -676,7 +715,7 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_gotu8")
-animation = &"sword-run-down"
+animation = &"sword-attack-down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, 10)
@@ -684,9 +723,40 @@ shape = SubResource("RectangleShape2D_pi7n0")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 
+[node name="AttackAreas" type="Node2D" parent="CharacterBody2D"]
+
+[node name="SwordAttackDownArea" type="Area2D" parent="CharacterBody2D/AttackAreas" groups=["Sword"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/AttackAreas/SwordAttackDownArea"]
+position = Vector2(-4, 25)
+shape = SubResource("RectangleShape2D_nfm44")
+disabled = true
+
+[node name="SwordAttackLeftArea" type="Area2D" parent="CharacterBody2D/AttackAreas" groups=["Sword"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/AttackAreas/SwordAttackLeftArea"]
+position = Vector2(-23.5, 4)
+shape = SubResource("RectangleShape2D_arl28")
+disabled = true
+
+[node name="SwordAttackRightArea" type="Area2D" parent="CharacterBody2D/AttackAreas" groups=["Sword"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/AttackAreas/SwordAttackRightArea"]
+position = Vector2(24, 4)
+shape = SubResource("RectangleShape2D_yey48")
+disabled = true
+
+[node name="SwordAttackUpArea" type="Area2D" parent="CharacterBody2D/AttackAreas" groups=["Sword"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/AttackAreas/SwordAttackUpArea"]
+position = Vector2(4, -24)
+shape = SubResource("RectangleShape2D_g12yh")
+disabled = true
+
 [node name="Pot" type="StaticBody2D" parent="."]
 position = Vector2(143, 139)
 scale = Vector2(0.559995, 0.559995)
+script = ExtResource("15_bhfki")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pot"]
@@ -706,3 +776,6 @@ scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_wb4pf")
 
 [connection signal="animation_finished" from="CharacterBody2D/AnimatedSprite2D" to="CharacterBody2D" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="frame_changed" from="CharacterBody2D/AnimatedSprite2D" to="CharacterBody2D" method="_on_animated_sprite_2d_frame_changed"]
+[connection signal="animation_finished" from="Pot/AnimatedSprite2D" to="Pot" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="Pot/Hitbox" to="Pot" method="_on_hitbox_area_entered"]

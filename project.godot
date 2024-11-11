@@ -22,6 +22,10 @@ window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
 
+[global_group]
+
+Sword=""
+
 [input]
 
 "Move Up"={

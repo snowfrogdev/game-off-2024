@@ -66,4 +66,21 @@ func handle_attack() -> void:
 func _on_animated_sprite_2d_animation_finished() -> void:
   if state == "attacking":
     state = "idle"
+    for child in $AttackAreas.get_children():
+      if child is Area2D:
+        for collider in child.get_children():
+          if collider is CollisionShape2D:
+            collider.disabled = true
     update_animations()
+
+func _on_animated_sprite_2d_frame_changed() -> void:
+  if $AnimatedSprite2D.frame == 4:
+    match ($AnimatedSprite2D.animation):
+      "sword-attack-left":
+        $AttackAreas/SwordAttackLeftArea/CollisionShape2D.disabled = false
+      "sword-attack-right":
+        $AttackAreas/SwordAttackRightArea/CollisionShape2D.disabled = false
+      "sword-attack-up":
+        $AttackAreas/SwordAttackUpArea/CollisionShape2D.disabled = false
+      "sword-attack-down":
+        $AttackAreas/SwordAttackDownArea/CollisionShape2D.disabled = false
