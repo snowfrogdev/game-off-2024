@@ -1,11 +1,18 @@
 extends CharacterBody2D
 
 @export var SPEED = 7000.0
+@export_range(0.0, 1.0) var TRAUMA_VALUE = 0.1
 
 var input: Vector2
 var state: String = "idle"
-var attack_timer: Timer
 var last_direction: String = "down"
+
+func _ready() -> void:
+    $AttackAreas/SwordAttackLeftArea.connect("area_entered", Callable(self, "_on_attack_area_entered"))
+    $AttackAreas/SwordAttackRightArea.connect("area_entered", Callable(self, "_on_attack_area_entered"))
+    $AttackAreas/SwordAttackUpArea.connect("area_entered", Callable(self, "_on_attack_area_entered"))
+    $AttackAreas/SwordAttackDownArea.connect("area_entered", Callable(self, "_on_attack_area_entered"))
+
 
 func _process(_delta: float) -> void:
     if state == "idle" or state == "moving":
@@ -84,3 +91,8 @@ func _on_animated_sprite_2d_frame_changed() -> void:
         $AttackAreas/SwordAttackUpArea/CollisionShape2D.disabled = false
       "sword-attack-down":
         $AttackAreas/SwordAttackDownArea/CollisionShape2D.disabled = false
+
+
+func _on_attack_area_entered(area: Area2D) -> void:
+  if area.is_in_group("Hittable"):
+    $Camera2D.add_trauma(TRAUMA_VALUE)

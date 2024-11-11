@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://c5mgiax3tqj6u"]
+
+[ext_resource type="Script" path="res://pot.gd" id="1_u16o7"]
+[ext_resource type="Texture2D" uid="uid://ccb3qydegcm2h" path="res://breakable pots (gray).png" id="2_kphtp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxf8f"]
+atlas = ExtResource("2_kphtp")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkuc0"]
+atlas = ExtResource("2_kphtp")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dnka"]
+atlas = ExtResource("2_kphtp")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kv84"]
+atlas = ExtResource("2_kphtp")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bdl4d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxf8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkuc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dnka")
+}],
+"loop": false,
+"name": &"break",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kv84")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hljc6"]
+size = Vector2(16, 7.85707)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wb4pf"]
+size = Vector2(10.7144, 21.4288)
+
+[node name="Pot" type="StaticBody2D"]
+scale = Vector2(0.559995, 0.559995)
+script = ExtResource("1_u16o7")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bdl4d")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 11.0715)
+shape = SubResource("RectangleShape2D_hljc6")
+
+[node name="Hitbox" type="Area2D" parent="." groups=["Hittable"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 3.57146)
+shape = SubResource("RectangleShape2D_wb4pf")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
