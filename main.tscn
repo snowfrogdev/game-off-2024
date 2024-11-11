@@ -341,16 +341,16 @@ region = Rect2(640, 0, 128, 128)
 [sub_resource type="SpriteFrames" id="SpriteFrames_gotu8"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_b634q")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_olb1d")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_tpjst")
 }, {
-"duration": 1.0,
+"duration": 0.6,
 "texture": SubResource("AtlasTexture_cj5qq")
 }, {
 "duration": 1.0,
@@ -645,16 +645,16 @@ animations = [{
 size = Vector2(12, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nfm44"]
-size = Vector2(58, 28)
+size = Vector2(58, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_arl28"]
-size = Vector2(29, 58)
+size = Vector2(40, 59)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yey48"]
-size = Vector2(29, 58)
+size = Vector2(40.5, 59)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g12yh"]
-size = Vector2(58, 28)
+size = Vector2(60, 41)
 
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
@@ -684,32 +684,33 @@ script = ExtResource("15_yat3y")
 [node name="SwordAttackDownArea" type="Area2D" parent="CharacterBody2D/AttackAreas" groups=["Sword"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/AttackAreas/SwordAttackDownArea"]
-position = Vector2(-4, 25)
+position = Vector2(-4, 16.5)
 shape = SubResource("RectangleShape2D_nfm44")
 disabled = true
 
 [node name="SwordAttackLeftArea" type="Area2D" parent="CharacterBody2D/AttackAreas" groups=["Sword"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/AttackAreas/SwordAttackLeftArea"]
-position = Vector2(-23.5, 4)
+position = Vector2(-18, 3.5)
 shape = SubResource("RectangleShape2D_arl28")
 disabled = true
 
 [node name="SwordAttackRightArea" type="Area2D" parent="CharacterBody2D/AttackAreas" groups=["Sword"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/AttackAreas/SwordAttackRightArea"]
-position = Vector2(24, 4)
+position = Vector2(18.25, 3.5)
 shape = SubResource("RectangleShape2D_yey48")
 disabled = true
 
 [node name="SwordAttackUpArea" type="Area2D" parent="CharacterBody2D/AttackAreas" groups=["Sword"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/AttackAreas/SwordAttackUpArea"]
-position = Vector2(4, -24)
+position = Vector2(3, -17.5)
 shape = SubResource("RectangleShape2D_g12yh")
 disabled = true
 
 [node name="PotSpawner" type="Node2D" parent="."]
+y_sort_enabled = true
 position = Vector2(194, 134)
 script = ExtResource("16_11vu7")
 pot_scene = ExtResource("16_n3b3b")
