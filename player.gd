@@ -15,19 +15,18 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-    if state == "idle" or state == "moving":
-        input = Input.get_vector("Move Left", "Move Right", "Move Up", "Move Down")
-        input = input.normalized()
-        if input != Vector2.ZERO:
-            state = "moving"
-        else:
-            state = "idle"
-        update_animations()
+  input = Input.get_vector("Move Left", "Move Right", "Move Up", "Move Down")
+  input = input.normalized()
+  if input != Vector2.ZERO and state != "attacking":
+    state = "moving"
+  elif state != "attacking":
+    state = "idle"
+  if state == "idle" or state == "moving":
+    update_animations()
 
 func _physics_process(_delta: float) -> void:
-    if state == "idle" or state == "moving":
-        velocity = input * SPEED * _delta
-        move_and_slide()
+  velocity = input * SPEED * _delta
+  move_and_slide()
 
 func update_animations() -> void:
     if Input.is_action_just_pressed("Attack") and state != "attacking":

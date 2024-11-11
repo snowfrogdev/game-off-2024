@@ -341,16 +341,16 @@ region = Rect2(640, 0, 128, 128)
 [sub_resource type="SpriteFrames" id="SpriteFrames_gotu8"]
 animations = [{
 "frames": [{
-"duration": 0.6,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_b634q")
 }, {
-"duration": 0.6,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_olb1d")
 }, {
-"duration": 0.6,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_tpjst")
 }, {
-"duration": 0.6,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_cj5qq")
 }, {
 "duration": 1.0,
@@ -367,19 +367,19 @@ animations = [{
 }],
 "loop": false,
 "name": &"sword-attack-down",
-"speed": 12.0
+"speed": 24.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_ylvye")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_3pq0e")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_jibml")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_v7s56")
 }, {
 "duration": 1.0,
@@ -396,19 +396,19 @@ animations = [{
 }],
 "loop": false,
 "name": &"sword-attack-left",
-"speed": 12.0
+"speed": 24.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_kqepr")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_wp0tv")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_kf7w3")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_tqcck")
 }, {
 "duration": 1.0,
@@ -425,19 +425,19 @@ animations = [{
 }],
 "loop": false,
 "name": &"sword-attack-right",
-"speed": 12.0
+"speed": 24.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_u44q4")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_kg0wj")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_ufbe0")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_6eodr")
 }, {
 "duration": 1.0,
@@ -454,7 +454,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"sword-attack-up",
-"speed": 12.0
+"speed": 24.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -670,7 +670,7 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_gotu8")
-animation = &"sword-attack-down"
+animation = &"sword-attack-up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, 10)
