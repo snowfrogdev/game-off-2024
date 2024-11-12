@@ -1,19 +1,19 @@
 [gd_scene load_steps=104 format=3 uid="uid://d14d4jwvj3tcg"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_6gt16"]
-[ext_resource type="Texture2D" uid="uid://vpwd4qp1u2sv" path="res://Sword_1_Template_Idle_Down-Sheet.png" id="1_bbiek"]
+[ext_resource type="Texture2D" uid="uid://vpwd4qp1u2sv" path="res://sprites/Sword_1_Template_Idle_Down-Sheet.png" id="1_bbiek"]
 [ext_resource type="Script" path="res://grid-background.gd" id="1_otrfq"]
-[ext_resource type="Texture2D" uid="uid://dq5r16nvggjx2" path="res://Sword_1_Template_Idle_Left-Sheet.png" id="2_8b0lk"]
-[ext_resource type="Texture2D" uid="uid://0lpoqyyukxwr" path="res://Sword_6_Template_Attack_1_Down-Sheet.png" id="3_87a5k"]
-[ext_resource type="Texture2D" uid="uid://lnucotju5ldo" path="res://Sword_1_Template_Idle_Right-Sheet.png" id="3_rd4ag"]
-[ext_resource type="Texture2D" uid="uid://cmuvjfx7gasde" path="res://Sword_6_Template_Attack_1_Left-Sheet.png" id="4_4hmos"]
-[ext_resource type="Texture2D" uid="uid://cjw6nocu3n8vy" path="res://Sword_1_Template_Idle_Up-Sheet.png" id="4_e05o8"]
-[ext_resource type="Texture2D" uid="uid://cicfkiicr00xd" path="res://Sword_2_Template_Run_Down-Sheet.png" id="5_8gd3r"]
-[ext_resource type="Texture2D" uid="uid://b28p0fdk80clx" path="res://Sword_6_Template_Attack_1_Right-Sheet.png" id="5_sslnc"]
-[ext_resource type="Texture2D" uid="uid://cvn5hljjpfttp" path="res://Sword_6_Template_Attack_1_Up-Sheet.png" id="6_7cgwr"]
-[ext_resource type="Texture2D" uid="uid://voroqlf1b0hu" path="res://Sword_2_Template_Run_Left-Sheet.png" id="6_7mwkm"]
-[ext_resource type="Texture2D" uid="uid://dneh6veuxbq5l" path="res://Sword_2_Template_Run_Right-Sheet.png" id="7_0r8g5"]
-[ext_resource type="Texture2D" uid="uid://c4gqp2xuoq2jh" path="res://Sword_2_Template_Run_Up-Sheet.png" id="8_i8yro"]
+[ext_resource type="Texture2D" uid="uid://dq5r16nvggjx2" path="res://sprites/Sword_1_Template_Idle_Left-Sheet.png" id="2_8b0lk"]
+[ext_resource type="Texture2D" uid="uid://0lpoqyyukxwr" path="res://sprites/Sword_6_Template_Attack_1_Down-Sheet.png" id="3_87a5k"]
+[ext_resource type="Texture2D" uid="uid://lnucotju5ldo" path="res://sprites/Sword_1_Template_Idle_Right-Sheet.png" id="3_rd4ag"]
+[ext_resource type="Texture2D" uid="uid://cmuvjfx7gasde" path="res://sprites/Sword_6_Template_Attack_1_Left-Sheet.png" id="4_4hmos"]
+[ext_resource type="Texture2D" uid="uid://cjw6nocu3n8vy" path="res://sprites/Sword_1_Template_Idle_Up-Sheet.png" id="4_e05o8"]
+[ext_resource type="Texture2D" uid="uid://cicfkiicr00xd" path="res://sprites/Sword_2_Template_Run_Down-Sheet.png" id="5_8gd3r"]
+[ext_resource type="Texture2D" uid="uid://b28p0fdk80clx" path="res://sprites/Sword_6_Template_Attack_1_Right-Sheet.png" id="5_sslnc"]
+[ext_resource type="Texture2D" uid="uid://cvn5hljjpfttp" path="res://sprites/Sword_6_Template_Attack_1_Up-Sheet.png" id="6_7cgwr"]
+[ext_resource type="Texture2D" uid="uid://voroqlf1b0hu" path="res://sprites/Sword_2_Template_Run_Left-Sheet.png" id="6_7mwkm"]
+[ext_resource type="Texture2D" uid="uid://dneh6veuxbq5l" path="res://sprites/Sword_2_Template_Run_Right-Sheet.png" id="7_0r8g5"]
+[ext_resource type="Texture2D" uid="uid://c4gqp2xuoq2jh" path="res://sprites/Sword_2_Template_Run_Up-Sheet.png" id="8_i8yro"]
 [ext_resource type="Script" path="res://camera_2d.gd" id="15_yat3y"]
 [ext_resource type="Script" path="res://pot_spawner.gd" id="16_11vu7"]
 [ext_resource type="PackedScene" uid="uid://c5mgiax3tqj6u" path="res://pot.tscn" id="16_n3b3b"]
@@ -670,7 +670,7 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_gotu8")
-animation = &"sword-attack-up"
+animation = &"sword-idle-down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, 10)

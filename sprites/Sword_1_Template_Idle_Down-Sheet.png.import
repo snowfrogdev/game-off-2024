@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cicfkiicr00xd"
-path="res://.godot/imported/Sword_2_Template_Run_Down-Sheet.png-407149028146df8316d75032c34b3ae2.ctex"
+uid="uid://vpwd4qp1u2sv"
+path="res://.godot/imported/Sword_1_Template_Idle_Down-Sheet.png-cbd0e2c2deb03509e3664ac915ffb8a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sword_2_Template_Run_Down-Sheet.png"
-dest_files=["res://.godot/imported/Sword_2_Template_Run_Down-Sheet.png-407149028146df8316d75032c34b3ae2.ctex"]
+source_file="res://sprites/Sword_1_Template_Idle_Down-Sheet.png"
+dest_files=["res://.godot/imported/Sword_1_Template_Idle_Down-Sheet.png-cbd0e2c2deb03509e3664ac915ffb8a8.ctex"]
 
 [params]
 

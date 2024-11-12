@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccb3qydegcm2h"
-path="res://.godot/imported/breakable pots (gray).png-28bbfd8f5523b0976fc222955496885d.ctex"
+uid="uid://clc8pjap602u3"
+path="res://.godot/imported/Sword_8_Template_Attack_2_Right-Sheet.png-f8cea47852c526a4db8887a05a084385.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://breakable pots (gray).png"
-dest_files=["res://.godot/imported/breakable pots (gray).png-28bbfd8f5523b0976fc222955496885d.ctex"]
+source_file="res://sprites/Sword_8_Template_Attack_2_Right-Sheet.png"
+dest_files=["res://.godot/imported/Sword_8_Template_Attack_2_Right-Sheet.png-f8cea47852c526a4db8887a05a084385.ctex"]
 
 [params]
 

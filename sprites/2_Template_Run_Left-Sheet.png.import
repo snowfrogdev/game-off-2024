@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b28p0fdk80clx"
-path="res://.godot/imported/Sword_6_Template_Attack_1_Right-Sheet.png-2e02f32371d96f298afd95019f2bd15a.ctex"
+uid="uid://cwl44gsddrt33"
+path="res://.godot/imported/2_Template_Run_Left-Sheet.png-286b799a49cef87780415afef8b64348.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sword_6_Template_Attack_1_Right-Sheet.png"
-dest_files=["res://.godot/imported/Sword_6_Template_Attack_1_Right-Sheet.png-2e02f32371d96f298afd95019f2bd15a.ctex"]
+source_file="res://sprites/2_Template_Run_Left-Sheet.png"
+dest_files=["res://.godot/imported/2_Template_Run_Left-Sheet.png-286b799a49cef87780415afef8b64348.ctex"]
 
 [params]
 

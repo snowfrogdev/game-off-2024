@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://c5mgiax3tqj6u"]
 
 [ext_resource type="Script" path="res://pot.gd" id="1_u16o7"]
-[ext_resource type="Texture2D" uid="uid://ccb3qydegcm2h" path="res://breakable pots (gray).png" id="2_kphtp"]
+[ext_resource type="Texture2D" uid="uid://ccb3qydegcm2h" path="res://sprites/breakable pots (gray).png" id="2_kphtp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pxf8f"]
 atlas = ExtResource("2_kphtp")
