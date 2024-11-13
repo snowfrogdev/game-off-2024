@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3 uid="uid://d14d4jwvj3tcg"]
+[gd_scene load_steps=105 format=3 uid="uid://d14d4jwvj3tcg"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_6gt16"]
 [ext_resource type="Texture2D" uid="uid://vpwd4qp1u2sv" path="res://sprites/Sword_1_Template_Idle_Down-Sheet.png" id="1_bbiek"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://camera_2d.gd" id="15_yat3y"]
 [ext_resource type="Script" path="res://pot_spawner.gd" id="16_11vu7"]
 [ext_resource type="PackedScene" uid="uid://c5mgiax3tqj6u" path="res://pot.tscn" id="16_n3b3b"]
+[ext_resource type="PackedScene" uid="uid://nje6ra1sa16r" path="res://enemy.tscn" id="18_dixwx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b634q"]
 atlas = ExtResource("3_87a5k")
@@ -642,7 +643,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pi7n0"]
-size = Vector2(12, 4)
+size = Vector2(14, 7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nfm44"]
 size = Vector2(58, 45)
@@ -661,50 +662,50 @@ y_sort_enabled = true
 script = ExtResource("1_otrfq")
 grid_color = Color(0, 0, 0, 1)
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(240, 134)
 motion_mode = 1
 script = ExtResource("1_6gt16")
 TRAUMA_VALUE = 0.05
 metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 sprite_frames = SubResource("SpriteFrames_gotu8")
 animation = &"sword-idle-down"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(0, 10)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 8.5)
 shape = SubResource("RectangleShape2D_pi7n0")
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+[node name="Camera2D" type="Camera2D" parent="Player"]
 script = ExtResource("15_yat3y")
 
-[node name="AttackAreas" type="Node2D" parent="CharacterBody2D"]
+[node name="AttackAreas" type="Node2D" parent="Player"]
 
-[node name="SwordAttackDownArea" type="Area2D" parent="CharacterBody2D/AttackAreas" groups=["Sword"]]
+[node name="SwordAttackDownArea" type="Area2D" parent="Player/AttackAreas" groups=["Sword"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/AttackAreas/SwordAttackDownArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/AttackAreas/SwordAttackDownArea"]
 position = Vector2(-4, 16.5)
 shape = SubResource("RectangleShape2D_nfm44")
 disabled = true
 
-[node name="SwordAttackLeftArea" type="Area2D" parent="CharacterBody2D/AttackAreas" groups=["Sword"]]
+[node name="SwordAttackLeftArea" type="Area2D" parent="Player/AttackAreas" groups=["Sword"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/AttackAreas/SwordAttackLeftArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/AttackAreas/SwordAttackLeftArea"]
 position = Vector2(-18, 3.5)
 shape = SubResource("RectangleShape2D_arl28")
 disabled = true
 
-[node name="SwordAttackRightArea" type="Area2D" parent="CharacterBody2D/AttackAreas" groups=["Sword"]]
+[node name="SwordAttackRightArea" type="Area2D" parent="Player/AttackAreas" groups=["Sword"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/AttackAreas/SwordAttackRightArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/AttackAreas/SwordAttackRightArea"]
 position = Vector2(18.25, 3.5)
 shape = SubResource("RectangleShape2D_yey48")
 disabled = true
 
-[node name="SwordAttackUpArea" type="Area2D" parent="CharacterBody2D/AttackAreas" groups=["Sword"]]
+[node name="SwordAttackUpArea" type="Area2D" parent="Player/AttackAreas" groups=["Sword"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/AttackAreas/SwordAttackUpArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/AttackAreas/SwordAttackUpArea"]
 position = Vector2(3, -17.5)
 shape = SubResource("RectangleShape2D_g12yh")
 disabled = true
@@ -717,5 +718,8 @@ pot_scene = ExtResource("16_n3b3b")
 number_of_pots = 20
 spawn_radius = 100.0
 
-[connection signal="animation_finished" from="CharacterBody2D/AnimatedSprite2D" to="CharacterBody2D" method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="frame_changed" from="CharacterBody2D/AnimatedSprite2D" to="CharacterBody2D" method="_on_animated_sprite_2d_frame_changed"]
+[node name="Enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("18_dixwx")]
+player = NodePath("../Player")
+
+[connection signal="animation_finished" from="Player/AnimatedSprite2D" to="Player" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="frame_changed" from="Player/AnimatedSprite2D" to="Player" method="_on_animated_sprite_2d_frame_changed"]
