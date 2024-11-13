@@ -2,13 +2,19 @@ extends CharacterBody2D
 
 @export var SPEED = 6000.0
 @export var player: Node2D
+@export var chase_radius = 250.0 # Add chase radius
 
 var last_direction = Vector2.DOWN # Track the last direction
 
 func _process(delta: float) -> void:
-    if player:
+    if player and is_player_within_radius():
         move_towards_player(delta)
-        play_animation()
+    else:
+        velocity = Vector2.ZERO # Reset velocity when not chasing player
+    play_animation()
+
+func is_player_within_radius() -> bool:
+    return global_position.distance_to(player.global_position) <= chase_radius
 
 func move_towards_player(delta: float) -> void:
     var direction = (player.global_position - global_position).normalized()
