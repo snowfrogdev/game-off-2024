@@ -64,6 +64,7 @@ position = Vector2(0, 11.0715)
 shape = SubResource("RectangleShape2D_hljc6")
 
 [node name="Hurtbox" type="Area2D" parent="." groups=["Hittable"]]
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, 3.57146)

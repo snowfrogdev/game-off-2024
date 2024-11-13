@@ -2,10 +2,14 @@ extends CharacterBody2D
 
 @export var SPEED = 7000.0
 @export_range(0.0, 1.0) var TRAUMA_VALUE = 0.1
+@export var max_health = 100 # Add max health
 
 var input: Vector2
 var state: String = "idle"
 var last_direction: String = "down"
+var is_dead = false
+var is_taking_damage = false # Flag to indicate taking damage
+var current_health = max_health # Initialize current health
 
 func _ready() -> void:
     $AttackAreas/SwordAttackLeftArea.connect("area_entered", Callable(self, "_on_attack_area_entered"))
@@ -14,6 +18,8 @@ func _ready() -> void:
     $AttackAreas/SwordAttackDownArea.connect("area_entered", Callable(self, "_on_attack_area_entered"))
 
 func _process(_delta: float) -> void:
+    if is_dead or is_taking_damage:
+        return
     input = Input.get_vector("Move Left", "Move Right", "Move Up", "Move Down")
     input = input.normalized()
     if input != Vector2.ZERO and state != "attacking":
@@ -24,6 +30,8 @@ func _process(_delta: float) -> void:
         update_animations()
 
 func _physics_process(_delta: float) -> void:
+    if is_dead or is_taking_damage:
+        return
     velocity = input * SPEED * _delta
     move_and_slide()
 
@@ -59,10 +67,10 @@ func handle_attack() -> void:
     state = "attacking"
     var direction = Vector2.ZERO
     if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-      var mouse_position = get_global_mouse_position()
-      direction = (mouse_position - global_position).normalized()
+        var mouse_position = get_global_mouse_position()
+        direction = (mouse_position - global_position).normalized()
     else:
-      direction = input
+        direction = input
     
     if abs(direction.x) > abs(direction.y):
         if direction.x > 0:
@@ -80,7 +88,11 @@ func handle_attack() -> void:
             last_direction = "up"
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-    if state == "attacking":
+    if $AnimatedSprite2D.animation.begins_with("death-"):
+        queue_free()
+    elif $AnimatedSprite2D.animation.begins_with("take-damage-"):
+        is_taking_damage = false # Reset the flag when take-damage animation finishes
+    elif state == "attacking":
         state = "idle"
         for child in $AttackAreas.get_children():
             if child is Area2D:
@@ -104,3 +116,44 @@ func _on_animated_sprite_2d_frame_changed() -> void:
 func _on_attack_area_entered(area: Area2D) -> void:
     if area.is_in_group("Hittable"):
         $Camera2D.add_trauma(TRAUMA_VALUE)
+
+func take_damage(amount: int) -> void:
+    if is_dead:
+        return
+    current_health -= amount
+    if current_health <= 0:
+        is_dead = true
+        play_death_animation()
+    else:
+        is_taking_damage = true
+        play_take_damage_animation() # Ensure this is called
+        $AnimatedSprite2D.stop() # Stop the current animation
+        $AnimatedSprite2D.play($AnimatedSprite2D.animation) # Restart the take-damage animation
+
+func play_take_damage_animation() -> void:
+    if is_dead:
+        return
+    match last_direction:
+        "left":
+            $AnimatedSprite2D.play("take-damage-left")
+        "right":
+            $AnimatedSprite2D.play("take-damage-right")
+        "up":
+            $AnimatedSprite2D.play("take-damage-up")
+        "down":
+            $AnimatedSprite2D.play("take-damage-down")
+
+func play_death_animation() -> void:
+    match last_direction:
+        "left":
+            $AnimatedSprite2D.play("death-left")
+        "right":
+            $AnimatedSprite2D.play("death-right")
+        "up":
+            $AnimatedSprite2D.play("death-up")
+        "down":
+            $AnimatedSprite2D.play("death-down")
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+    if area.is_in_group("Weapons"):
+        take_damage(25) # Adjust damage value as needed
