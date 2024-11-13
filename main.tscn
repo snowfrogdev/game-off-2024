@@ -666,7 +666,7 @@ grid_color = Color(0, 0, 0, 1)
 position = Vector2(240, 134)
 motion_mode = 1
 script = ExtResource("1_6gt16")
-TRAUMA_VALUE = 0.05
+TRAUMA_VALUE = 0.075
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
