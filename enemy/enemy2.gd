@@ -1,6 +1,7 @@
 class_name Enemy extends CharacterBody2D
 
 @export var SPEED = 6000.0
+@export var max_health = 100
 
 @onready var player_detection_area: Area2D = $PlayerDetectionArea
 @onready var hurtbox_area: Area2D = $HurtboxArea

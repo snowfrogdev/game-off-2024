@@ -7,12 +7,17 @@ func enter(_previous_state_path: String, _data: Dictionary = {}) -> void:
 
 func exit() -> void:
   enemy.animated_sprite.disconnect("animation_finished", Callable(self, "_on_animated_sprite_2d_animation_finished"))
+  enemy.hurtbox_area.disconnect("area_entered", Callable(self, "_on_hurtbox_area_entered"))
 
 func take_damage(amount: int) -> void:
   enemy.velocity = Vector2()
   enemy.animated_sprite.stop()
   var animation_name = "take-damage-" + get_direction_name()
   enemy.animated_sprite.play(animation_name)
+
+  health -= amount
+  if health <= 0:
+    finished.emit(DEAD)
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
   if area.is_in_group("Weapons"):

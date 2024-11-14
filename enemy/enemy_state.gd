@@ -10,10 +10,12 @@ enum Direction {
 }
 
 var direction: Direction = Direction.DOWN
+var health: int
 
-const IDLE = "Idle"
-const CHASING = "Chasing"
 const ATTACKING = "Attacking"
+const CHASING = "Chasing"
+const DEAD = "Dead"
+const IDLE = "Idle"
 const TAKING_DAMAGE = "TakingDamage"
 
 var enemy: Enemy
@@ -23,6 +25,7 @@ func _ready() -> void:
   await owner.ready
   enemy = owner as Enemy
   assert(enemy != null, "The EnemyState state type must be used only in the enemy scene. It needs the owner to be a Enemy node.")
+  health = enemy.max_health
 
 func get_direction_name() -> String:
   var direction_names = {

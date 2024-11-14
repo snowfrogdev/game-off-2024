@@ -11,6 +11,7 @@ func enter(_previous_state_path: String, data: Dictionary = {"direction_name": "
 
 func exit() -> void:
   enemy.player_detection_area.disconnect("body_entered", Callable(self, "_on_player_detection_area_body_entered"))
+  enemy.hurtbox_area.disconnect("area_entered", Callable(self, "_on_hurtbox_area_entered"))
 
 func _on_player_detection_area_body_entered(body: Node2D) -> void:
   if body is Player:
