@@ -4,6 +4,10 @@ func enter(_previous_state_path: String, _data: Dictionary = {}) -> void:
   updateAnimation()
 
 func physics_update(delta: float) -> void:
+  movement_input = Input \
+    .get_vector("Move Left", "Move Right", "Move Up", "Move Down") \
+    .normalized()
+    
   if Input.is_action_just_pressed("Attack"):
     finished.emit(ATTACKING)
   elif movement_input == Vector2.ZERO:

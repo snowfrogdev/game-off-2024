@@ -1,6 +1,6 @@
 [gd_scene load_steps=186 format=3 uid="uid://oa5sj48ddorl"]
 
-[ext_resource type="Script" path="res://player2.gd" id="1_l2i1s"]
+[ext_resource type="Script" path="res://player/player2.gd" id="1_l2i1s"]
 [ext_resource type="Texture2D" uid="uid://btmasmsebkn83" path="res://sprites/5_Template_Death_Down-Sheet.png" id="2_4mfgk"]
 [ext_resource type="Texture2D" uid="uid://blnyip804kv5d" path="res://sprites/5_Template_Death_Left-Sheet.png" id="3_m2x3o"]
 [ext_resource type="Texture2D" uid="uid://bklk8ja0ebg6u" path="res://sprites/5_Template_Death_Right-Sheet.png" id="4_v0drk"]
@@ -23,9 +23,9 @@
 [ext_resource type="Texture2D" uid="uid://flcjgjdbna72" path="res://sprites/4_Template_Take_Damage_Up-Sheet.png" id="21_ks188"]
 [ext_resource type="Script" path="res://camera_2d.gd" id="22_j3k4j"]
 [ext_resource type="PackedScene" uid="uid://c07tyvbw4jvj6" path="res://state_machine.tscn" id="23_jj865"]
-[ext_resource type="Script" path="res://idle.gd" id="24_8bwl5"]
-[ext_resource type="Script" path="res://moving.gd" id="25_78d47"]
-[ext_resource type="Script" path="res://attacking.gd" id="26_hhhs4"]
+[ext_resource type="Script" path="res://player/idle.gd" id="24_8bwl5"]
+[ext_resource type="Script" path="res://player/moving.gd" id="25_78d47"]
+[ext_resource type="Script" path="res://player/attacking.gd" id="26_hhhs4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i3hel"]
 atlas = ExtResource("2_4mfgk")
@@ -1278,7 +1278,3 @@ script = ExtResource("25_78d47")
 
 [node name="Attacking" type="Node" parent="StateMachine"]
 script = ExtResource("26_hhhs4")
-
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_hitbox_area_entered"]

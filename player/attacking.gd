@@ -3,6 +3,10 @@ extends PlayerState
 func enter(_previous_state_path: String, _data: Dictionary = {}) -> void:
   player.animated_sprite.connect("animation_finished", Callable(self, "_on_animated_sprite_2d_animation_finished"))
   
+  movement_input = Input \
+    .get_vector("Move Left", "Move Right", "Move Up", "Move Down") \
+    .normalized()
+  
   var attack_direction = Vector2.ZERO
   if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
     var mouse_position = player.get_global_mouse_position()

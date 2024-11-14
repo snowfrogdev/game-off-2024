@@ -1,6 +1,6 @@
 # Boilerplate class to get full autocompletion and type checks for the `player` when coding the player's states.
 # Without this, we have to run the game to see typos and other errors the compiler could otherwise catch while scripting.
-class_name PlayerState extends State
+class_name EnemyState extends State
 
 enum Direction {
     UP,
@@ -11,24 +11,18 @@ enum Direction {
 
 var direction: Direction = Direction.DOWN
 
-var movement_input = Vector2.ZERO
-
 const IDLE = "Idle"
-const MOVING = "Moving"
+const CHASING = "Chasing"
 const ATTACKING = "Attacking"
+const TAKING_DAMAGE = "TakingDamage"
 
-var player: Player
+var enemy: Enemy
 
 
 func _ready() -> void:
   await owner.ready
-  player = owner as Player
-  assert(player != null, "The PlayerState state type must be used only in the player scene. It needs the owner to be a Player node.")
-
-func update(delta: float) -> void:
-  movement_input = Input \
-    .get_vector("Move Left", "Move Right", "Move Up", "Move Down") \
-    .normalized()
+  enemy = owner as Enemy
+  assert(enemy != null, "The EnemyState state type must be used only in the enemy scene. It needs the owner to be a Enemy node.")
 
 func get_direction_name() -> String:
   var direction_names = {

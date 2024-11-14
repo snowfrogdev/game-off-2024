@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://d14d4jwvj3tcg"]
 
 [ext_resource type="Script" path="res://grid-background.gd" id="1_otrfq"]
-[ext_resource type="PackedScene" uid="uid://oa5sj48ddorl" path="res://player.tscn" id="2_dckbp"]
+[ext_resource type="PackedScene" uid="uid://oa5sj48ddorl" path="res://player/player.tscn" id="2_dckbp"]
 [ext_resource type="Script" path="res://pot_spawner.gd" id="16_11vu7"]
 [ext_resource type="PackedScene" uid="uid://c5mgiax3tqj6u" path="res://pot.tscn" id="16_n3b3b"]
-[ext_resource type="PackedScene" uid="uid://nje6ra1sa16r" path="res://enemy.tscn" id="18_dixwx"]
+[ext_resource type="PackedScene" uid="uid://nje6ra1sa16r" path="res://enemy/enemy.tscn" id="18_dixwx"]
 
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
@@ -23,5 +23,4 @@ number_of_pots = 20
 spawn_radius = 100.0
 
 [node name="Enemy" parent="." instance=ExtResource("18_dixwx")]
-position = Vector2(15, 14)
-attack_radius = 15.0
+position = Vector2(-6, -11)
