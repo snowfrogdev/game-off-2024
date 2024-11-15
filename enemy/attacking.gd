@@ -24,6 +24,8 @@ func enter(_previous_state_path: String, _data: Dictionary = {}) -> void:
       enemy.hitboxes["up"].get_children()[0].disabled = false
       enemy.animated_sprite.play("attack-up")
       direction = Direction.UP
+  
+  enemy.attack_cooldown_timer.start(enemy.attack_cooldown)
 
 func exit() -> void:
   enemy.animated_sprite.disconnect("animation_finished", Callable(self, "_on_animated_sprite_2d_animation_finished"))

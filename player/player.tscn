@@ -1,6 +1,6 @@
-[gd_scene load_steps=186 format=3 uid="uid://oa5sj48ddorl"]
+[gd_scene load_steps=188 format=3 uid="uid://oa5sj48ddorl"]
 
-[ext_resource type="Script" path="res://player/player2.gd" id="1_l2i1s"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_l2i1s"]
 [ext_resource type="Texture2D" uid="uid://btmasmsebkn83" path="res://sprites/5_Template_Death_Down-Sheet.png" id="2_4mfgk"]
 [ext_resource type="Texture2D" uid="uid://blnyip804kv5d" path="res://sprites/5_Template_Death_Left-Sheet.png" id="3_m2x3o"]
 [ext_resource type="Texture2D" uid="uid://bklk8ja0ebg6u" path="res://sprites/5_Template_Death_Right-Sheet.png" id="4_v0drk"]
@@ -26,6 +26,8 @@
 [ext_resource type="Script" path="res://player/idle.gd" id="24_8bwl5"]
 [ext_resource type="Script" path="res://player/moving.gd" id="25_78d47"]
 [ext_resource type="Script" path="res://player/attacking.gd" id="26_hhhs4"]
+[ext_resource type="Script" path="res://player/taking_damage.gd" id="27_7qltt"]
+[ext_resource type="Script" path="res://player/dead.gd" id="28_4jf4p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i3hel"]
 atlas = ExtResource("2_4mfgk")
@@ -1262,10 +1264,10 @@ position = Vector2(3, -16.5)
 shape = SubResource("RectangleShape2D_g12yh")
 disabled = true
 
-[node name="Hurtbox" type="Area2D" parent="." groups=["Hittable"]]
+[node name="HurtboxArea" type="Area2D" parent="." groups=["Hittable"]]
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxArea"]
 shape = SubResource("RectangleShape2D_q3m8s")
 
 [node name="StateMachine" parent="." instance=ExtResource("23_jj865")]
@@ -1278,3 +1280,9 @@ script = ExtResource("25_78d47")
 
 [node name="Attacking" type="Node" parent="StateMachine"]
 script = ExtResource("26_hhhs4")
+
+[node name="TakingDamage" type="Node" parent="StateMachine"]
+script = ExtResource("27_7qltt")
+
+[node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource("28_4jf4p")

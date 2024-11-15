@@ -43,7 +43,7 @@ func _transition_to_next_state(target_state_path: String, data: Dictionary = {})
     return
 
   # Log the state transition.
-  print(owner.name + ": Transitioning from " + state.name + " to " + target_state_path)
+  # print(owner.name + ": Transitioning from " + state.name + " to " + target_state_path)
 
   var previous_state_path := state.name
   state.exit()

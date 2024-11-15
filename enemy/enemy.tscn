@@ -1,6 +1,6 @@
 [gd_scene load_steps=189 format=3 uid="uid://nje6ra1sa16r"]
 
-[ext_resource type="Script" path="res://enemy/enemy2.gd" id="1_jwot4"]
+[ext_resource type="Script" path="res://enemy/enemy.gd" id="1_jwot4"]
 [ext_resource type="Texture2D" uid="uid://b3bo4p4u7bsup" path="res://sprites/1_Template_Idle_Down-Sheet.png" id="1_vuap5"]
 [ext_resource type="Texture2D" uid="uid://dca1uduqnbys0" path="res://sprites/1_Template_Idle_Left-Sheet.png" id="2_dqb1e"]
 [ext_resource type="Texture2D" uid="uid://btmasmsebkn83" path="res://sprites/5_Template_Death_Down-Sheet.png" id="2_f8cqp"]
@@ -1220,6 +1220,7 @@ size = Vector2(20, 16)
 size = Vector2(14, 22)
 
 [node name="Enemy" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_jwot4")
 metadata/_edit_group_ = true
 
@@ -1300,3 +1301,6 @@ script = ExtResource("22_rbjns")
 
 [node name="Attacking" type="Node" parent="StateMachine"]
 script = ExtResource("23_4rpyu")
+
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+one_shot = true

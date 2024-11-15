@@ -1,7 +1,11 @@
 extends PlayerState
 
 func enter(_previous_state_path: String, _data: Dictionary = {}) -> void:
+  player.hurtbox_area.connect("area_entered", Callable(self, "_on_hurtbox_area_entered"))
   updateAnimation()
+
+func exit() -> void:
+  player.hurtbox_area.disconnect("area_entered", Callable(self, "_on_hurtbox_area_entered"))
 
 func physics_update(delta: float) -> void:
   movement_input = Input \
@@ -33,3 +37,7 @@ func updateDirection() -> void:
           direction = Direction.DOWN
       else:
           direction = Direction.UP
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+  if area.is_in_group("Weapons"):
+    finished.emit(TAKING_DAMAGE)

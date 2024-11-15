@@ -10,12 +10,14 @@ enum Direction {
 }
 
 var direction: Direction = Direction.DOWN
-
 var movement_input = Vector2.ZERO
+var health: int
 
+const ATTACKING = "Attacking"
+const DEAD = "Dead"
 const IDLE = "Idle"
 const MOVING = "Moving"
-const ATTACKING = "Attacking"
+const TAKING_DAMAGE = "TakingDamage"
 
 var player: Player
 
@@ -24,6 +26,7 @@ func _ready() -> void:
   await owner.ready
   player = owner as Player
   assert(player != null, "The PlayerState state type must be used only in the player scene. It needs the owner to be a Player node.")
+  health = player.max_health
 
 func get_direction_name() -> String:
   var direction_names = {
