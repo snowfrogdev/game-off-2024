@@ -22,5 +22,6 @@ pot_scene = ExtResource("16_n3b3b")
 number_of_pots = 20
 spawn_radius = 100.0
 
-[node name="Enemy" parent="." instance=ExtResource("18_dixwx")]
+[node name="Enemy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("18_dixwx")]
 position = Vector2(-6, -11)
+player = NodePath("../Player")
