@@ -1,7 +1,19 @@
-[gd_scene load_steps=11 format=3 uid="uid://d14d4jwvj3tcg"]
+[gd_scene load_steps=18 format=3 uid="uid://d14d4jwvj3tcg"]
 
 [ext_resource type="Script" path="res://player_paddle.gd" id="1_evsku"]
+[ext_resource type="Script" path="res://main.gd" id="1_wt81r"]
+[ext_resource type="Script" path="res://ball.gd" id="2_37x4k"]
 [ext_resource type="Texture2D" uid="uid://loq3dq5sstqi" path="res://sprites/ball.png" id="2_bdnk2"]
+[ext_resource type="Script" path="res://enemy_paddle.gd" id="2_mqie0"]
+[ext_resource type="FontFile" uid="uid://cmn5ojpq7k4ed" path="res://PixelifySans-VariableFont_wght.ttf" id="6_elu0o"]
+
+[sub_resource type="Gradient" id="Gradient_161ni"]
+colors = PackedColorArray(0, 0, 1, 1, 0, 0, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hfgfh"]
+gradient = SubResource("Gradient_161ni")
+width = 1152
+height = 648
 
 [sub_resource type="Gradient" id="Gradient_ou5dt"]
 colors = PackedColorArray(0.814399, 0.182097, 0.561694, 1, 0.814399, 0.182097, 0.561694, 1)
@@ -13,27 +25,33 @@ width = 16
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sbpko"]
 size = Vector2(16, 64)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktmdm"]
+size = Vector2(16, 64)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qpv4x"]
 size = Vector2(1152, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o45mn"]
 size = Vector2(1152, 64)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_84655"]
-size = Vector2(526, 648)
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_js8na"]
-friction = 0.0
-rough = true
-bounce = 1.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_w2ekv"]
 radius = 8.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gv0oi"]
+size = Vector2(64, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxo7y"]
+size = Vector2(64, 648)
+
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_wt81r")
 
-[node name="PlayerPaddle" type="CharacterBody2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_hfgfh")
+centered = false
+
+[node name="PlayerPaddle" type="CharacterBody2D" parent="." groups=["Paddles"]]
 position = Vector2(60, 324)
 motion_mode = 1
 script = ExtResource("1_evsku")
@@ -45,6 +63,21 @@ texture = SubResource("GradientTexture2D_t80ag")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPaddle"]
 shape = SubResource("RectangleShape2D_sbpko")
+
+[node name="EnemyPaddle" type="CharacterBody2D" parent="." node_paths=PackedStringArray("ball") groups=["Paddles"]]
+position = Vector2(1092, 324)
+rotation = 3.14159
+motion_mode = 1
+script = ExtResource("2_mqie0")
+difficulty = 0
+ball = NodePath("../Ball")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyPaddle"]
+texture = SubResource("GradientTexture2D_t80ag")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyPaddle"]
+shape = SubResource("RectangleShape2D_ktmdm")
 
 [node name="TopSide" type="StaticBody2D" parent="."]
 
@@ -58,20 +91,12 @@ shape = SubResource("RectangleShape2D_qpv4x")
 position = Vector2(576, 680)
 shape = SubResource("RectangleShape2D_o45mn")
 
-[node name="BottomSide2" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomSide2"]
-position = Vector2(1415, 324)
-shape = SubResource("RectangleShape2D_84655")
-
-[node name="Ball" type="RigidBody2D" parent="."]
+[node name="Ball" type="CharacterBody2D" parent="."]
 position = Vector2(571, 324)
 collision_layer = 2
-physics_material_override = SubResource("PhysicsMaterial_js8na")
-gravity_scale = 0.0
-linear_velocity = Vector2(-300, 200)
-linear_damp_mode = 1
-angular_damp_mode = 1
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("2_37x4k")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Ball"]
@@ -81,3 +106,51 @@ texture = ExtResource("2_bdnk2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
 shape = SubResource("CircleShape2D_w2ekv")
+
+[node name="BallTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="ScoreLeft" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreLeft"]
+position = Vector2(-32, 324)
+shape = SubResource("RectangleShape2D_gv0oi")
+
+[node name="ScoreRight" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreRight"]
+position = Vector2(1184, 324)
+shape = SubResource("RectangleShape2D_gxo7y")
+
+[node name="Hud" type="CanvasLayer" parent="."]
+
+[node name="PlayerScore" type="Label" parent="Hud"]
+offset_left = 456.0
+offset_top = 5.0
+offset_right = 496.0
+offset_bottom = 65.0
+theme_override_fonts/font = ExtResource("6_elu0o")
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CPUScore" type="Label" parent="Hud"]
+offset_left = 648.0
+offset_top = 5.0
+offset_right = 688.0
+offset_bottom = 65.0
+theme_override_fonts/font = ExtResource("6_elu0o")
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="BallTimer" to="." method="_on_ball_timer_timeout"]
+[connection signal="body_entered" from="ScoreLeft" to="." method="_on_score_left_body_entered"]
+[connection signal="body_entered" from="ScoreRight" to="." method="_on_score_right_body_entered"]

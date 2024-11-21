@@ -17,12 +17,10 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 [display]
 
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
 
 [global_group]
 
-Hittable=""
-Weapons=""
+Paddles="Player or AI controlled paddles"
 
 [input]
 
