@@ -24,10 +24,10 @@ width = 16
 height = 96
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sbpko"]
-size = Vector2(1, 96)
+size = Vector2(3, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktmdm"]
-size = Vector2(1, 96)
+size = Vector2(3, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qpv4x"]
 size = Vector2(1152, 64)
@@ -63,7 +63,7 @@ metadata/_edit_group_ = true
 texture = SubResource("GradientTexture2D_t80ag")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPaddle"]
-position = Vector2(7.5, 0)
+position = Vector2(6.5, 0)
 shape = SubResource("RectangleShape2D_sbpko")
 
 [node name="EnemyPaddle" type="CharacterBody2D" parent="." node_paths=PackedStringArray("ball") groups=["Paddles"]]
@@ -79,7 +79,7 @@ metadata/_edit_group_ = true
 texture = SubResource("GradientTexture2D_t80ag")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyPaddle"]
-position = Vector2(7.5, 0)
+position = Vector2(6.5, 0)
 shape = SubResource("RectangleShape2D_ktmdm")
 
 [node name="TopSide" type="StaticBody2D" parent="."]

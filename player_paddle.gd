@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 @export var SPEED = 500.0
-@export var STRETCH_FACTOR = 0.01
+@export var STRETCH_FACTOR = 0.015
 
 
 func _physics_process(delta: float) -> void:

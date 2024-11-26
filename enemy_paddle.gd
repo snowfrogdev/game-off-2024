@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 enum Difficulty {EASY, MEDIUM, HARD}
 @export var difficulty = Difficulty.MEDIUM
-@export var STRETCH_FACTOR = 0.01
+@export var STRETCH_FACTOR = 0.015
 var SPEED = 400.0
 var REACTION_TIME = 0.2
 var ERROR_MARGIN = 30.0

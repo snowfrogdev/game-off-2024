@@ -2,10 +2,10 @@ extends CharacterBody2D
 
 # Maximum angle (in degrees) from the normal upon hitting the paddle edge
 @export var max_bounce_angle = 45
-@export var acceleration = 50
+@export var acceleration = 25
 @export var start_speed = 300.0
 var speed: float
-
+var tween: Tween
 
 func new_ball():
   visible = true
@@ -26,14 +26,15 @@ func _physics_process(delta):
         handle_collision(collision)
 
 func handle_collision(collision: KinematicCollision2D):
-    var collider = collision.get_collider()
-    # Check if the collider is a paddle
-    if collider.is_in_group("Paddles"):
-        handle_paddle_collision(collision)
-    else:
-        # Reflect the velocity vector based on the collision normal
-        var normal = collision.get_normal()
-        velocity = velocity.bounce(normal).normalized() * speed
+  var collider = collision.get_collider()
+  # Check if the collider is a paddle
+  if collider.is_in_group("Paddles"):
+      handle_paddle_collision(collision)
+  else:
+      # Reflect the velocity vector based on the collision normal
+      var normal = collision.get_normal()
+      velocity = velocity.bounce(normal).normalized() * speed
+  scale_ball()
 
 func handle_paddle_collision(collision: KinematicCollision2D):
     var collider: CharacterBody2D = collision.get_collider()
@@ -66,3 +67,9 @@ func handle_paddle_collision(collision: KinematicCollision2D):
     var direction = -sign(velocity.dot(paddle_normal))
     speed += acceleration
     velocity = paddle_normal.rotated(bounce_angle) * direction * speed
+
+func scale_ball():
+  if (tween): tween.kill()
+  tween = create_tween()
+  tween.tween_property(self, "scale", Vector2(1.5, 1.5), 0.1)
+  tween.tween_property(self, "scale", Vector2(1, 1), 0.1)
