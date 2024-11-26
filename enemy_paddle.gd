@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 enum Difficulty {EASY, MEDIUM, HARD}
 @export var difficulty = Difficulty.MEDIUM
+@export var STRETCH_FACTOR = 0.01
 var SPEED = 400.0
 var REACTION_TIME = 0.2
 var ERROR_MARGIN = 30.0
@@ -43,3 +44,8 @@ func _physics_process(delta: float) -> void:
           velocity.y = movement
           
         move_and_collide(velocity)
+
+        # Stretch and squeeze based on velocity
+        var stretch = 1.0 + abs(velocity.y) * STRETCH_FACTOR
+        scale.y = stretch
+        scale.x = 1.0 / stretch
