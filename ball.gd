@@ -1,23 +1,21 @@
 extends CharacterBody2D
 
-@export var speed: float = 400.0
 # Maximum angle (in degrees) from the normal upon hitting the paddle edge
 @export var max_bounce_angle = 45
+@export var acceleration = 50
+@export var start_speed = 300.0
+var speed: float
 
-func _ready():
-    # Initialize the ball's velocity with a random direction towards a player
-    randomize()
-    var angle = deg_to_rad(randf_range(-30, 30))
-    # Start by moving right; change to PI + angle for left
-    velocity = Vector2(cos(angle), sin(angle)) * speed
 
 func new_ball():
+  visible = true
   var win_size = get_viewport_rect().size
   position.x = win_size.x / 2
   position.y = randi_range(200, win_size.y - 200)
   # Initialize the ball's velocity with a random direction towards a player
   var angle = deg_to_rad(randf_range(-30, 30))
   var direction = 1 if randf() > 0.5 else -1
+  speed = start_speed
   velocity = Vector2(cos(angle), sin(angle)) * speed * direction
   
 
@@ -66,4 +64,5 @@ func handle_paddle_collision(collision: KinematicCollision2D):
 
     # Update velocity
     var direction = -sign(velocity.dot(paddle_normal))
+    speed += acceleration
     velocity = paddle_normal.rotated(bounce_angle) * direction * speed

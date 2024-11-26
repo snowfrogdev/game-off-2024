@@ -36,6 +36,10 @@ func _physics_process(delta: float) -> void:
             reaction_timer = REACTION_TIME
 
         var direction = target_position - position.y
-        var movement = clamp(direction, -SPEED * delta, SPEED * delta)
-        velocity.y = movement
+        if abs(direction) < SPEED * delta:
+            velocity.y = direction
+        else:
+          var movement = clamp(direction, -SPEED * delta, SPEED * delta)
+          velocity.y = movement
+          
         move_and_collide(velocity)

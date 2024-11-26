@@ -21,12 +21,13 @@ colors = PackedColorArray(0.814399, 0.182097, 0.561694, 1, 0.814399, 0.182097, 0
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_t80ag"]
 gradient = SubResource("Gradient_ou5dt")
 width = 16
+height = 96
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sbpko"]
-size = Vector2(16, 64)
+size = Vector2(1, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktmdm"]
-size = Vector2(16, 64)
+size = Vector2(1, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qpv4x"]
 size = Vector2(1152, 64)
@@ -62,6 +63,7 @@ metadata/_edit_group_ = true
 texture = SubResource("GradientTexture2D_t80ag")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPaddle"]
+position = Vector2(7.5, 0)
 shape = SubResource("RectangleShape2D_sbpko")
 
 [node name="EnemyPaddle" type="CharacterBody2D" parent="." node_paths=PackedStringArray("ball") groups=["Paddles"]]
@@ -69,7 +71,7 @@ position = Vector2(1092, 324)
 rotation = 3.14159
 motion_mode = 1
 script = ExtResource("2_mqie0")
-difficulty = 0
+difficulty = 2
 ball = NodePath("../Ball")
 metadata/_edit_group_ = true
 
@@ -77,6 +79,7 @@ metadata/_edit_group_ = true
 texture = SubResource("GradientTexture2D_t80ag")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyPaddle"]
+position = Vector2(7.5, 0)
 shape = SubResource("RectangleShape2D_ktmdm")
 
 [node name="TopSide" type="StaticBody2D" parent="."]
@@ -92,6 +95,7 @@ position = Vector2(576, 680)
 shape = SubResource("RectangleShape2D_o45mn")
 
 [node name="Ball" type="CharacterBody2D" parent="."]
+visible = false
 position = Vector2(571, 324)
 collision_layer = 2
 collision_mask = 5
